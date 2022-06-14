@@ -12,6 +12,14 @@ class _OtpScreenState extends State<OtpScreen> {
   TextEditingController _NohpController = TextEditingController();
   FocusNode? myFocusNode;
 
+  /*@override
+  void validate(String? value){
+    if(value.length> 0){
+      return 'tidak boleh kosong';
+    }
+
+  }*/
+
   @override
   void initState() {
     super.initState();
@@ -24,65 +32,128 @@ class _OtpScreenState extends State<OtpScreen> {
     super.dispose();
   }
 
+  String greeting() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Pagi!';
+    }
+    if (hour < 17) {
+      return 'Sore!';
+    }
+    return 'Malam!';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
+
         alignment: Alignment.topCenter,
         margin: EdgeInsets.symmetric(horizontal: 30),
         child: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Padding(
-              padding: const EdgeInsets.only(top: 50.0),
-              child:
-              Image.asset(
-                'assets/images/otp.png',
-                width: 300,
-                height: 140,
-              ),
-      ),
-              SizedBox(height: 60),
-              Text(
-                'Verifikasi OTP',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black, fontSize: 32,fontFamily: 'Urbanist' ),
-              ),
-              SizedBox(height: 24),
-              Text(
-                'We will send  you a one time password\n to your registered mobile number',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey, fontSize: 16,fontFamily: 'Urbanist Regular' ),
-              ),
-              SizedBox(
-                height: 100,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(30.0)),
-                child: TextFormField(
-                  controller: _NohpController,
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    labelText: "Nomor HP",
-                    labelStyle: TextStyle(color: Colors.grey),
-                    icon: Icon(
-                      Icons.phone,
-                      color: Colors.grey,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 70.0),
+                    child:
+                    Image.asset(
+                      'assets/images/otp.png',
+                      width: 200,
+                      height: 140,
                     ),
-                    border: InputBorder.none,
                   ),
-                  textInputAction: TextInputAction.next,
-                  onFieldSubmitted: (_) => myFocusNode?.requestFocus(),
-                ),
+                  Column(
+                    children:<Widget>[
+                      SizedBox(height: 30),
+                      Text(
+                        'Selamat ' + greeting() + ' \nSilakan Login ke akun Ngetop-Up',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 18,fontFamily: 'Urbanist' ),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'We will send  you a one time password\n to your registered mobile number',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.grey, fontSize: 16,fontFamily: 'Urbanist Regular' ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 30),
+                  Column(
+                    children:<Widget> [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: TextFormField(
+                          controller: _NohpController,
+                          style: TextStyle(color: Colors.black),
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                            labelText: "Email",
+                            labelStyle: TextStyle(color: Colors.grey),
+                            icon: Icon(
+                              Icons.mail,
+                              color: Colors.grey,
+                            ),
+                            border: InputBorder.none,
+                          ),
+                          textInputAction: TextInputAction.next,
+                          onFieldSubmitted: (_) => myFocusNode?.requestFocus(),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: TextFormField(
+                          style: TextStyle(color: Colors.black),
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                            labelText: "Password",
+                            labelStyle: TextStyle(color: Colors.grey),
+                            icon: Icon(
+                              Icons.password,
+                              color: Colors.grey,
+                            ),
+                            border: InputBorder.none,
+                          ),
+                          textInputAction: TextInputAction.next,
+                          obscureText: true,
+                          onFieldSubmitted: (_) => myFocusNode?.requestFocus(),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Lupa Password?',
+                            style: TextStyle(color: Colors.blue, fontSize: 12,fontFamily: 'Urbanist Bold' ),
+                          ),
+                        ],
+                      ),
+
+
+
+                    ],
+                  )
+                ],
               ),
-              SizedBox(height: 50),
+
+
               Container(
                 margin: const EdgeInsets.only(top: 20.0, bottom: 30.0),
                 padding: const EdgeInsets.only(left: 0.0, right: 0.0),
@@ -110,6 +181,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           ],
                         ),
                         onPressed: () {
+                          print(_NohpController.text);
                           Navigator.pop(context);
                         },
                       ),
