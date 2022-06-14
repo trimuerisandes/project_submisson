@@ -3,22 +3,35 @@ import 'package:flutter/material.dart';
 import 'package:project_submisson/otp_screen.dart';
 
 class LoginScreen extends StatelessWidget {
+  final Color? mycolor;
+
+  LoginScreen({
+    Key? key,
+    this.mycolor = Colors.blue,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
         child: new Container(
+          padding: EdgeInsets.only(top:15.0, bottom: 30.0),
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             color: Colors.white,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
             children: <Widget>[
               Container(
                   child:  Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.only(top: 50.0, bottom: 0.0),
+                    padding: EdgeInsets.only(
+                      top: 50.0
+                    ),
+                    alignment: Alignment.topCenter,
                     child: Column(
                       children: <Widget>[
                         Text(
@@ -34,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                   ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 0.0, top: 100.0),
+                padding: const EdgeInsets.only(left: 0.0, top: 0.0),
                 child:
                 Image.asset(
                   'assets/images/Frame.png',
@@ -42,25 +55,28 @@ class LoginScreen extends StatelessWidget {
                   height: 240,
                 ),
               ),
+              Column(
+                children:<Widget>[
               Container(
                 alignment: AlignmentDirectional.bottomEnd,
-                margin: const EdgeInsets.only(top: 100.0),
+                margin: const EdgeInsets.only(top: 00.0),
                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                 child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     new Expanded(
                       child: FlatButton(
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                        splashColor: Colors.mycolor,
-                        color: Colors.mycolor,
+                        splashColor: this.mycolor,
+                        color: this.mycolor,
                         height: 50,
                         child: new Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                                "Masuk",
-                                style: TextStyle(color: Colors.white, fontFamily: 'Urbanist Regular'),
-                              ),
+                              "Masuk",
+                              style: TextStyle(color: Colors.white, fontFamily: 'Urbanist Regular'),
+                            ),
                           ],
                         ),
                         onPressed: () {
@@ -74,6 +90,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               Container(
+
                 alignment: AlignmentDirectional.bottomEnd,
                 margin: const EdgeInsets.only(top: 10.0),
                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
@@ -82,8 +99,8 @@ class LoginScreen extends StatelessWidget {
                     new Expanded(
                       child: FlatButton(
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                        splashColor: Colors.mycolor,
-                        color: Colors.mycolor,
+                        splashColor: this.mycolor,
+                        color: this.mycolor,
                         height: 50,
                         child: new Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -99,6 +116,8 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+                ],
               ),
             ],
           ),

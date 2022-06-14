@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class OtpScreen extends StatefulWidget {
 
+
   @override
   _OtpScreenState createState() => _OtpScreenState();
+
 }
 
 class _OtpScreenState extends State<OtpScreen> {
@@ -25,25 +27,23 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Container(
         alignment: Alignment.topCenter,
         margin: EdgeInsets.symmetric(horizontal: 30),
-        child: SingleChildScrollView(
+        child: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 0),
+              Padding(
+              padding: const EdgeInsets.only(top: 50.0),
+              child:
               Image.asset(
                 'assets/images/otp.png',
                 width: 300,
                 height: 140,
               ),
+      ),
               SizedBox(height: 60),
               Text(
                 'Verifikasi OTP',
@@ -94,7 +94,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                         height: 60,
                         splashColor: Colors.white,
-                        color: Colors.mycolor,
+                        color: Colors.blue,
                         child: new Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
