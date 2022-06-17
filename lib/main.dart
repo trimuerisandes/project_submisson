@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_submisson/otp_screen.dart';
 import 'package:project_submisson/login_screen.dart';
 
 

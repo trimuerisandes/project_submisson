@@ -1,29 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_submisson/otp_screen.dart';
 
-class SigninScreen extends StatelessWidget {
-  final Color? mycolor;
+class OtpScreen extends StatefulWidget {
+  @override
+  _OtpScreenState createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
   TextEditingController _NohpController = TextEditingController();
   FocusNode? myFocusNode;
+  //bool visibilityTag = false;
+  bool visibilityObs = false;
 
-
-  SigninScreen({
-    Key? key,
-    this.mycolor = Colors.blue,
-  });
-
-  /*@override
-  void initState() {
-    super.initState();
-    myFocusNode = FocusNode();
-  }
-
-  @override
-  void dispose() {
-    myFocusNode?.dispose();
-    super.dispose();
-  }*/
 
   String greeting() {
     var hour = DateTime.now().hour;
@@ -35,6 +22,31 @@ class SigninScreen extends StatelessWidget {
     }
     return 'Malam!';
   }
+
+  Color _containerColor = Colors.yellow;
+
+  void _changed(bool visibility, String field) {
+    setState(() {
+      /*if (field == "tag"){
+        visibilityTag = visibility;
+      }*/
+      if (field == "obs"){
+        visibilityObs = visibility;
+      }
+    });
+  }
+
+  void changeColor() {
+    setState(() {
+      if (_containerColor == Colors.yellow) {
+        _containerColor = Colors.red;
+        return;
+      }
+      _containerColor = Colors.yellow;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +77,7 @@ class SigninScreen extends StatelessWidget {
                     children:<Widget>[
                       SizedBox(height: 30),
                       Text(
-                        'Selamet ' + greeting() + ' \nSilakan Login ke akun Ngetop-Up',
+                        'Selamat ' + greeting() + ' \nSilakan Login ke akun Ngetop-Up',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18,fontFamily: 'Urbanist' ),
                       ),
@@ -137,9 +149,6 @@ class SigninScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-
-
-
                     ],
                   )
                 ],
@@ -181,6 +190,64 @@ class SigninScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              new Container(
+                  margin: new EdgeInsets.only(left: 16.0, right: 16.0),
+                  child: new Column(
+                    children: <Widget>[
+                      visibilityObs ? new Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          new Expanded(
+                            flex: 11,
+                            child: new Text(
+                              "Ngetop-up versi 1.0.A 2022", textAlign: TextAlign.center,
+                            )
+                          ),
+                          new Expanded(
+                            flex: 1,
+                            child: new IconButton(
+                              color: Colors.grey[400],
+                              icon: const Icon(Icons.cancel, size: 15.0,),
+                              onPressed: () {
+                                _changed(false, "obs");
+                              },
+                            ),
+                          ),
+                        ],
+                      ) : new Container(),
+                    ],
+                  )
+              ),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  new InkWell(
+                      onTap: () {
+                        visibilityObs ? null : _changed(true, "obs");
+                      },
+                      child: new Container(
+                        margin: new EdgeInsets.only(top: 16.0),
+                        child: new Column(
+                          children: <Widget>[
+                            new Icon(Icons.android, color: visibilityObs ? Colors.grey[400] : Colors.grey[600]),
+                            new Container(
+                              margin: const EdgeInsets.only(top: 8.0),
+                              child: new Text(
+                                "Versi Aplikasi",
+                                style: new TextStyle(
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w400,
+                                  color: visibilityObs ? Colors.grey[400] : Colors.grey[600],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                  ),
+                  new SizedBox(width: 24.0),
+                ],
+              )
             ],
           ),
         ),
@@ -188,4 +255,3 @@ class SigninScreen extends StatelessWidget {
     );
   }
 }
-

@@ -18,9 +18,9 @@ class LoginScreen extends StatelessWidget {
         child: new Container(
           padding: EdgeInsets.only(top:15.0, bottom: 30.0),
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
+          /*decoration: BoxDecoration(
             color: Colors.white,
-          ),
+          ),*/
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
@@ -82,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context){
-                            return SigninScreen();
+                            return OtpScreen();
                           }));
                         },
                       ),
