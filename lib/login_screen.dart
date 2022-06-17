@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_submisson/otp_screen.dart';
+import 'package:project_submisson/signin_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final Color? mycolor;
@@ -81,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context){
-                            return OtpScreen();
+                            return SigninScreen();
                           }));
                         },
                       ),

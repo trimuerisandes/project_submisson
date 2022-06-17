@@ -1,26 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_submisson/otp_screen.dart';
 
-class OtpScreen extends StatefulWidget {
-
-
-  @override
-  _OtpScreenState createState() => _OtpScreenState();
-
-}
-
-class _OtpScreenState extends State<OtpScreen> {
+class SigninScreen extends StatelessWidget {
+  final Color? mycolor;
   TextEditingController _NohpController = TextEditingController();
   FocusNode? myFocusNode;
 
+
+  SigninScreen({
+    Key? key,
+    this.mycolor = Colors.blue,
+  });
+
   /*@override
-  void validate(String? value){
-    if(value.length> 0){
-      return 'tidak boleh kosong';
-    }
-
-  }*/
-
-  @override
   void initState() {
     super.initState();
     myFocusNode = FocusNode();
@@ -30,7 +23,7 @@ class _OtpScreenState extends State<OtpScreen> {
   void dispose() {
     myFocusNode?.dispose();
     super.dispose();
-  }
+  }*/
 
   String greeting() {
     var hour = DateTime.now().hour;
@@ -42,7 +35,6 @@ class _OtpScreenState extends State<OtpScreen> {
     }
     return 'Malam!';
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +65,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     children:<Widget>[
                       SizedBox(height: 30),
                       Text(
-                        'Selamat ' + greeting() + ' \nSilakan Login ke akun Ngetop-Up',
+                        'Selamet ' + greeting() + ' \nSilakan Login ke akun Ngetop-Up',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18,fontFamily: 'Urbanist' ),
                       ),
@@ -196,3 +188,4 @@ class _OtpScreenState extends State<OtpScreen> {
     );
   }
 }
+
