@@ -8,7 +8,6 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
   TextEditingController _NohpController = TextEditingController();
   FocusNode? myFocusNode;
-  //bool visibilityTag = false;
   bool visibilityObs = false;
 
 
@@ -27,9 +26,6 @@ class _OtpScreenState extends State<OtpScreen> {
 
   void _changed(bool visibility, String field) {
     setState(() {
-      /*if (field == "tag"){
-        visibilityTag = visibility;
-      }*/
       if (field == "obs"){
         visibilityObs = visibility;
       }
@@ -50,22 +46,19 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+     // resizeToAvoidBottomInset: false,
       body: Container(
-
-        alignment: Alignment.topCenter,
-        margin: EdgeInsets.symmetric(horizontal: 30),
-        child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 15),
+        child: new Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 70.0),
+                    padding: const EdgeInsets.only(top: 0.0),
                     child:
                     Image.asset(
                       'assets/images/otp.png',
@@ -81,90 +74,78 @@ class _OtpScreenState extends State<OtpScreen> {
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18,fontFamily: 'Urbanist' ),
                       ),
-                      SizedBox(height: 20),
+                    ],
+                  ),
+                ],
+              ),
+              Column(
+                children:<Widget> [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: TextFormField(
+                      controller: _NohpController,
+                      style: TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        labelText: "Email",
+                        labelStyle: TextStyle(color: Colors.grey),
+                        icon: Icon(
+                          Icons.mail,
+                          color: Colors.grey,
+                        ),
+                        border: InputBorder.none,
+                      ),
+                      textInputAction: TextInputAction.next,
+                      onFieldSubmitted: (_) => myFocusNode?.requestFocus(),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                    margin: const EdgeInsets.only(top: 20.0, bottom: 0.0),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: TextFormField(
+                      style: TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        labelText: "Password",
+                        labelStyle: TextStyle(color: Colors.grey),
+                        icon: Icon(
+                          Icons.password,
+                          color: Colors.grey,
+                        ),
+                        border: InputBorder.none,
+                      ),
+                      textInputAction: TextInputAction.next,
+                      obscureText: true,
+                      onFieldSubmitted: (_) => myFocusNode?.requestFocus(),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
                       Text(
-                        'We will send  you a one time password\n to your registered mobile number',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.grey, fontSize: 16,fontFamily: 'Urbanist Regular' ),
+                        'Lupa Password?',
+                        style: TextStyle(color: Colors.blue, fontSize: 12,fontFamily: 'Urbanist Bold' ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
-                  Column(
-                    children:<Widget> [
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: TextFormField(
-                          controller: _NohpController,
-                          style: TextStyle(color: Colors.black),
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                            labelText: "Email",
-                            labelStyle: TextStyle(color: Colors.grey),
-                            icon: Icon(
-                              Icons.mail,
-                              color: Colors.grey,
-                            ),
-                            border: InputBorder.none,
-                          ),
-                          textInputAction: TextInputAction.next,
-                          onFieldSubmitted: (_) => myFocusNode?.requestFocus(),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: TextFormField(
-                          style: TextStyle(color: Colors.black),
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                            labelText: "Password",
-                            labelStyle: TextStyle(color: Colors.grey),
-                            icon: Icon(
-                              Icons.password,
-                              color: Colors.grey,
-                            ),
-                            border: InputBorder.none,
-                          ),
-                          textInputAction: TextInputAction.next,
-                          obscureText: true,
-                          onFieldSubmitted: (_) => myFocusNode?.requestFocus(),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            'Lupa Password?',
-                            style: TextStyle(color: Colors.blue, fontSize: 12,fontFamily: 'Urbanist Bold' ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
                 ],
               ),
-
-
               Container(
-                margin: const EdgeInsets.only(top: 20.0, bottom: 30.0),
-                padding: const EdgeInsets.only(left: 0.0, right: 0.0),
-                height: 50,
                 child: new Row(
                   children: <Widget>[
                     new Expanded(
                       child: FlatButton(
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                        height: 60,
+                        height: 50,
                         splashColor: Colors.white,
                         color: Colors.blue,
                         child: new Row(
@@ -191,20 +172,20 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
               ),
               new Container(
-                  margin: new EdgeInsets.only(left: 16.0, right: 16.0),
+                  margin: new EdgeInsets.only(top:0.0, left: 16.0, right: 16.0),
                   child: new Column(
                     children: <Widget>[
                       visibilityObs ? new Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
                           new Expanded(
-                            flex: 11,
+                            flex: 5,
                             child: new Text(
                               "Ngetop-up versi 1.0.A 2022", textAlign: TextAlign.center,
                             )
                           ),
                           new Expanded(
-                            flex: 1,
+                            flex: 0,
                             child: new IconButton(
                               color: Colors.grey[400],
                               icon: const Icon(Icons.cancel, size: 15.0,),
@@ -220,18 +201,19 @@ class _OtpScreenState extends State<OtpScreen> {
               ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   new InkWell(
                       onTap: () {
                         visibilityObs ? null : _changed(true, "obs");
                       },
                       child: new Container(
-                        margin: new EdgeInsets.only(top: 16.0),
+                        margin: new EdgeInsets.only(top: 0.0),
                         child: new Column(
                           children: <Widget>[
                             new Icon(Icons.android, color: visibilityObs ? Colors.grey[400] : Colors.grey[600]),
                             new Container(
-                              margin: const EdgeInsets.only(top: 8.0),
+                              margin: const EdgeInsets.only(top: 0.0),
                               child: new Text(
                                 "Versi Aplikasi",
                                 style: new TextStyle(
@@ -245,7 +227,6 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                       )
                   ),
-                  new SizedBox(width: 24.0),
                 ],
               )
             ],
