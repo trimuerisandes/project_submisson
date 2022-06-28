@@ -55,24 +55,24 @@ class _OtpScreenState extends State<OtpScreen> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Column(
+              Row(
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(top: 0.0),
                     child:
                     Image.asset(
                       'assets/images/otp.png',
-                      width: 200,
-                      height: 140,
+                      width: 100,
+                      height: 60,
                     ),
                   ),
-                  Column(
+                  Row(
                     children:<Widget>[
                       SizedBox(height: 30),
                       Text(
                         'Selamat ' + greeting() + ' \nSilakan Login ke akun Ngetop-Up',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18,fontFamily: 'Urbanist' ),
+                        textAlign: TextAlign.left,
+                        style: TextStyle(color: Colors.black, fontSize: 12,fontFamily: 'Urbanist' ),
                       ),
                     ],
                   ),
@@ -171,36 +171,8 @@ class _OtpScreenState extends State<OtpScreen> {
                   ],
                 ),
               ),
-              new Container(
-                  margin: new EdgeInsets.only(top:0.0, left: 16.0, right: 16.0),
-                  child: new Column(
-                    children: <Widget>[
-                      visibilityObs ? new Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          new Expanded(
-                            flex: 5,
-                            child: new Text(
-                              "Ngetop-up versi 1.0.A 2022", textAlign: TextAlign.center,
-                            )
-                          ),
-                          new Expanded(
-                            flex: 0,
-                            child: new IconButton(
-                              color: Colors.grey[400],
-                              icon: const Icon(Icons.cancel, size: 15.0,),
-                              onPressed: () {
-                                _changed(false, "obs");
-                              },
-                            ),
-                          ),
-                        ],
-                      ) : new Container(),
-                    ],
-                  )
-              ),
               new Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   new InkWell(
@@ -209,7 +181,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       },
                       child: new Container(
                         margin: new EdgeInsets.only(top: 0.0),
-                        child: new Column(
+                        child: new Row(
                           children: <Widget>[
                             new Icon(Icons.android, color: visibilityObs ? Colors.grey[400] : Colors.grey[600]),
                             new Container(
@@ -225,6 +197,29 @@ class _OtpScreenState extends State<OtpScreen> {
                             ),
                           ],
                         ),
+                      )
+                  ),
+                  new InkWell(
+                      onTap: () {
+                        _changed(false, "obs");
+                      },
+                      child: new Container(
+                        margin: new EdgeInsets.only(top: 5.0, left: 4.0),
+                        child: visibilityObs ? new Row(
+                          children: <Widget>[
+                            new Expanded(
+                              flex: 0,
+                              child: new Text(
+                                "Ngetop-up v.1.0.A", textAlign: TextAlign.right,
+                                style: new TextStyle(
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w400,
+                                  color: visibilityObs ? Colors.grey[400] : Colors.grey[600],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ) : new Container(),
                       )
                   ),
                 ],
